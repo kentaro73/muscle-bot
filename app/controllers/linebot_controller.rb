@@ -23,7 +23,14 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       word = ["ないすで〜す", "ナイス！", "いい感じ！", "ナイスバルク！", "キレてるよ！", "バリバリ！", "仕上がってるよ！", "はい！ずどーん！", "腹筋グレネード！","肩メロン！", "背中に羽が生えてる！", "脚が歩いてる！"].sample
-      push = "#{word}"
+      fixed_word = ["筋トレしろ", "筋繊維を切れ", "続けなさい", "時々休め", "筋肉痛に感謝しろ", "筋肉と友達になれ"]
+      case event.message['text']
+      when /.*(終わった|おわた｜おわった|終了|できた|おわったよ|終わったよ|できたよ).*/
+        push = "#{word}"
+      else
+        push = "#{fixed_word}"
+      end
+
       case event
       when Line::Bot::Event::Message
         case event.type
