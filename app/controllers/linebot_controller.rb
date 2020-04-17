@@ -28,7 +28,7 @@ class LinebotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          mesasge = {
+          message = {
             type: 'text',
             text: push
           }
